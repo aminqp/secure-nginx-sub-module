@@ -1,5 +1,5 @@
 # Base image with pinned version
-FROM alpine:3.18.4 as builder
+FROM alpine:3.18.4 AS builder
 
 # Set Nginx version
 ENV NGINX_VERSION=1.24.0
@@ -52,6 +52,7 @@ RUN ./configure \
     --with-http_realip_module \
     --with-http_sub_module \
     --with-http_stub_status_module \
+    --with-http_gzip_static_module \
     && make -j$(getconf _NPROCESSORS_ONLN) \
     && make install
 
